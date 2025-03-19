@@ -1,0 +1,74 @@
+#CHECKING PIXEL DATA IN AN IMAGE and Printing Meta data 
+
+#Step1
+
+#INSTALL FOLLOWING 
+#below code is run in google colab environment 
+
+!pip install pydicom matplotlib tqdm Pillow
+!pip install pylibjpeg pylibjpeg-libjpeg
+
+
+#step2: Mount drive 
+
+rom google.colab import drive
+drive.mount('/content/drive')
+
+#step3: printing metadata in Ultrasound image
+
+import os
+import pydicom
+import numpy as np
+import matplotlib.pyplot as plt
+from tqdm import tqdm
+from PIL import Image
+#Read the DICOM file
+ds = pydicom.dcmread('/content/drive/MyDrive/type your file path')
+
+# Print all the DICOM tags and data
+print(ds)
+
+#sample output
++++++++++++++
+
+Dataset.file_meta -------------------------------
+(0002,0000) File Meta Information Group Length  UL: 200
+(0002,0001) File Meta Information Version       OB: b'\x00\x01'
+(0002,0002) Media Storage SOP Class UID         UI: Secondary Capture Image Storage
+
+
+#Step 4: Check in your image have pixel data or not 
+
+s = pydicom.dcmread('/content/drive/MyDrive/type your file path')
+
+# Check for PixelData presence
+if 'PixelData' in ds:
+    print("PixelData is available!")
+else:
+    print("No PixelData found.")
+
+#Sample output
+PixelData is available!
+
+#Step5
+
+import pydicom
+import numpy as np
+
+# Load DICOM file
+dicom_file = pydicom.dcmread('/content/drive/MyDrive/type your path')
+# Access pixel data
+pixel_data = dicom_file.pixel_array
+
+# Check if the data is valid
+if pixel_data is not None:
+    print("Pixel data shape:", pixel_data.shape)
+    print("Pixel data range:", np.min(pixel_data), "to", np.max(pixel_data))
+else:
+    print("No pixel data found.")
+
+# MY image output
+
+Pixel data shape: (600, 800, 3)
+Pixel data range: 2 to 255
+
