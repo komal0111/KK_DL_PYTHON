@@ -7,3 +7,5 @@ Rescale Slope/Intercept: Apply these to convert raw pixel data to meaningful val
 Pixel Spacing: Verify physical spacing between pixels for accurate measurements.
 
 This code is base fundamental checking of pixel data is available in your dataset
+
+https://colab.research.google.com/drive/1OSyJB7XZmxcgWlWkxRp1NbICcRFnLlrF?usp=sharing
